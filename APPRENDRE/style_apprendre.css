@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+    background-color: black;
+}
+
+.prompt {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    width: 90%;
+    height: 200px; /* Ajustez la hauteur selon vos besoins */
+    margin-bottom: 10px;
+    resize: vertical; /* Permet le redimensionnement vertical */
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+
+button {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.tabs {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.tablink {
+    background-color: #f2f2f2;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background-color 0.3s;
+}
+
+.tablink:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+}
+
+/* Style par défaut de l'onglet actif */
+#html {
+    display: block;
+}
+
+/* Style par défaut de l'onglet actif */
+.tablink.active {
+    background-color: #ccc;
+}

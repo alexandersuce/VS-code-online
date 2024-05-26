@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code</title>
+    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        /* Reset des styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .editor, .documentation, .examples {
+            background-color: #393939;
+            border: 2px solid white;
+            width: 90%;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+        }
+
+        .prompt {
+            background-color: #2d2d2d;
+            border: 1px solid #ccc;
+            color: white;
+            width: 100%;
+            height: 200px;
+            resize: vertical;
+            padding: 10px;
+            font-family: monospace;
+        }
+
+        .preview {
+            background-color: black;
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+
+        .preview code {
+            color: white;
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #8e44ad, #e74c3c, #3498db);
+            border: 1px solid #8e44ad;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #3498db, #e74c3c, #8e44ad);
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        .suggestions {
+            position: relative;
+        }
+
+        .suggestions span {
+            background-color: #2d2d2d;
+            border: 1px solid #ccc;
+            padding: 5px;
+            cursor: pointer;
+            display: block;
+        }
+
+        .suggestions span:hover {
+            background-color: #1d1d1d;
+        }
+
+        .documentation h2, .examples h2 {
+            margin-bottom: 10px;
+        }
+
+        .documentation p, .examples pre {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor">
+        <textarea class="prompt" placeholder="Codez ici..."></textarea>
+        <pre class="preview"><code class="language-html"></code></pre>
+        <div class="buttons">
+            <button class="btn tester" onclick="testerCode()">Tester</button>
+            <button class="btn enregistrer" onclick="enregistrerCode()">Enregistrer</button>
+        </div>
+        <div class="suggestions"></div>
+    </div>
+
+    <div class="documentation">
+        <h2>Documentation</h2>
+        <p>HTML (HyperText Markup Language) est le code utilisé pour structurer une page web et son contenu. Voici un exemple de code HTML :</p>
+        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Titre de la page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bonjour le monde&lt;/h1&gt;
+    &lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <p>CSS (Cascading Style Sheets) est utilisé pour styliser le contenu HTML. Voici un exemple de code CSS :</p>
+        <pre><code class="language-css">body {
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+h1 {
+    color: #333;
+}
+p {
+    color: #666;
+}</code></pre>
+
+        <p>JavaScript est utilisé pour ajouter de l'interactivité aux pages web. Voici un exemple de code JavaScript :</p>
+        <pre><code class="language-js">document.querySelector('h1').addEventListener('click', function() {
+    alert('Titre cliqué!');
+});</code></pre>
+    </div>
+
+    <div class="examples">
+        <h2>Exemples de Code</h2>
+        <pre><code class="language-html">&lt;div class="example"&gt;
+    &lt;h2&gt;Exemple de Div&lt;/h2&gt;
+    &lt;p&gt;Ceci est une div avec du texte.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+        <pre><code class="language-css">.example {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+.example h2 {
+    color: #3498db;
+}</code></pre>
+
+        <pre><code class="language-js">document.querySelector('.example').style.backgroundColor = '#e0e0e0';</code></pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script>
+        function testerCode() {
+            const code = document.querySelector('.prompt').value;
+            const newWindow = window.open();
+            newWindow.document.open();
+            newWindow.document.write(code);
+            newWindow.document.close();
+        }
+
+        function enregistrerCode() {
+            const code = document.querySelector('.prompt').value;
+            const blob = new Blob([code], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'code.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        const suggestions = ['html', 'css', 'javascript', 'python', 'java', 'c++', 'php', 'ruby', 'swift'];
+        const textarea = document.querySelector('.prompt');
+        const suggestionsDiv = document.querySelector('.suggestions');
+
+        textarea.addEventListener('input', () => {
+            const text = textarea.value.toLowerCase();
+            const words = text.split(' ');
+            const currentWord = words[words.length - 1];
+            const matchedSuggestions = suggestions.filter(suggestion =>
+                suggestion.startsWith(currentWord)
+            );
+            renderSuggestions(matchedSuggestions);
+        });
+
+        textarea.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const lastWord = getLastWord(textarea.value);
+                if (lastWord && suggestions.includes(lastWord.toLowerCase())) {
+                    e.preventDefault();
+                    textarea.value += ' ';
+                    suggestionsDiv.innerHTML = '';
+                }
+            }
+        });
+
+        function getLastWord(text) {
+            const words = text.trim().split(' ');
+            return words[words.length - 1];
+        }
+
+        function renderSuggestions(suggestions) {
+            suggestionsDiv.innerHTML = '';
+            suggestions.forEach(suggestion => {
+                const suggestionSpan = document.createElement('span');
+                suggestionSpan.textContent = suggestion;
+                suggestionSpan.classList.add('suggestion');
+                suggestionSpan.addEventListener('click', () => {
+                    insertSuggestion(suggestion);
+                });
+                suggestionsDiv.appendChild(suggestionSpan);
+            });
+        }
+
+        function insertSuggestion(suggestion) {
+            const currentText = textarea.value.trim();
+            const lastWordIndex = currentText.lastIndexOf(' ');
+            const newText = currentText.substring(0, lastWordIndex + 1) + suggestion;
+            textarea.value = newText;
+            suggestionsDiv.innerHTML = '';
+            textarea.focus();
+        }
+    </script>
+</body>
+</html>
