@@ -1,173 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 body {
-    background-color: black;
-    color: white;
+    background-color: #121212;
+    color: #ffffff;
     font-family: 'Inter', sans-serif;
-}
-
-.prompt {
-    background-color: #1e1e1e;
-    border: none;
-    color: white;
-    width: 90%;
-    height: 200px;
-    margin-bottom: 10px;
-    resize: vertical;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: monospace;
-    line-height: 1.5;
-    white-space: pre;
-}
-
-.prompt::placeholder {
-    color: #888;
-}
-
-button {
-    font-family: 'Inter', sans-serif;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.tabs {
-    overflow: hidden;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
-}
-
-.tablink {
-    background-color: #333;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: background-color 0.3s, color 0.3s;
-    color: white;
-}
-
-.tablink:hover {
-    background-color: #555;
-    color: #fff;
-}
-
-.tabcontent {
-    display: none;
-    padding: 20px;
-    border-top: none;
-}
-
-#html {
-    display: block;
-}
-
-.tablink.active {
-    background-color: #666;
-    color: white;
-}
-
-/* Styles pour la numérotation des lignes */
-.editor {
+    margin: 0;
+    padding: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.editor-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #444;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: 20px;
+    background-color: #121212; /* Match the background of the page */
+    height: 100vh; /* Adjusted height */
+    position: relative; /* Added position */
 }
 
 .line-numbers {
-    user-select: none;
-    text-align: right;
-    margin-right: 10px;
-    padding-right: 10px;
-    border-right: 1px solid #444;
+    background-color: #1e1e1e;
     color: #888;
+    padding: 10px;
+    text-align: right;
+    user-select: none;
+    white-space: pre;
+    position: absolute; /* Added position */
+    left: 0; /* Added left */
+    top: 0; /* Added top */
+    height: 100%; /* Added height */
 }
 
-.line-numbers > div {
+.line-numbers div {
+    margin: 0 5px 0 0;
+    line-height: 1.5; /* Added line-height */
+    font-size: 16px; /* Increased font-size */
+}
+
+.prompt {
+    background-color: #121212; /* Match the background of the page */
+    color: #f8f8f2; /* Couleur de base pour le texte */
+    width: 100%;
+    border: none;
+    resize: none;
+    padding: 10px;
+    font-family: 'Fira Code', monospace; /* Utiliser Fira Code */
+    font-size: 16px; /* Augmenter la taille de la police */
     line-height: 1.5;
-}
-
-.code-area {
+    white-space: pre;
+    overflow: auto;
     flex: 1;
+    margin-left: 50px; /* Adjusted margin-left */
 }
 
-/* Ajustement des styles pour le contenu de la documentation et des exemples */
-.documentation, .examples {
-    background-color: #2b2b2b;
+.preview-container {
+    flex: 1;
+    background-color: #1e1e1e;
+    padding: 20px;
     border: 1px solid #444;
     border-radius: 5px;
-    padding: 20px;
-    box-sizing: border-box;
-    color: #ddd;
-    width: 90%;
-    margin-bottom: 20px;
+    overflow: auto;
+    max-height: 100vh;
 }
 
-.documentation h2, .examples h2 {
-    margin-bottom: 10px;
-    color: #fff;
+.preview-container h2 {
+    margin-top: 0;
+    text-align: center;
 }
 
-.documentation p, .examples pre {
-    margin-bottom: 10px;
-    color: #ccc;
+#preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: white;
 }
 
-/* Style des boutons */
 .buttons {
-    margin-bottom: 20px;
     display: flex;
-    justify-content: space-between;
-    width: 90%;
+    justify-content: center;
+    margin: 10px 0;
 }
 
 .btn {
-    background: linear-gradient(to right, #8e44ad, #e74c3c, #3498db);
-    border: none;
-    color: white;
+    font-family: 'Inter', sans-serif;
     padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
+    background-color: #00d73d;
+    color: white;
+    border: none;
     border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
-    background: linear-gradient(to right, #3498db, #e74c3c, #8e44ad);
+    background-color: #0056b3;
     transform: scale(1.05);
-}
-
-.btn:focus {
-    outline: none;
-}
-
-/* Style pour les suggestions */
-.suggestions {
-    position: relative;
-    width: 90%;
-}
-
-.suggestions span {
-    background-color: #2d2d2d;
-    border: 1px solid #ccc;
-    padding: 5px;
-    cursor: pointer;
-    display: block;
-}
-
-.suggestions span:hover {
-    background-color: #1d1d1d;
 }
 
