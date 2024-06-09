@@ -2,34 +2,43 @@
 
 body {
     background-color: black;
+    color: white;
+    font-family: 'Inter', sans-serif;
 }
 
 .prompt {
-    background-color: black;
-    border: 2px solid white;
+    background-color: #1e1e1e;
+    border: none;
     color: white;
     width: 90%;
-    height: 200px; /* Ajustez la hauteur selon vos besoins */
+    height: 200px;
     margin-bottom: 10px;
-    resize: vertical; /* Permet le redimensionnement vertical */
+    resize: vertical;
     padding: 10px;
     box-sizing: border-box;
     font-family: monospace;
+    line-height: 1.5;
+    white-space: pre;
 }
 
+.prompt::placeholder {
+    color: #888;
+}
 
 button {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Inter', sans-serif;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .tabs {
@@ -39,17 +48,19 @@ button:hover {
 }
 
 .tablink {
-    background-color: #f2f2f2;
+    background-color: #333;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+    color: white;
 }
 
 .tablink:hover {
-    background-color: #ddd;
+    background-color: #555;
+    color: #fff;
 }
 
 .tabcontent {
@@ -58,12 +69,105 @@ button:hover {
     border-top: none;
 }
 
-/* Style par défaut de l'onglet actif */
 #html {
     display: block;
 }
 
-/* Style par défaut de l'onglet actif */
 .tablink.active {
-    background-color: #ccc;
+    background-color: #666;
+    color: white;
 }
+
+/* Styles pour la numérotation des lignes */
+.editor {
+    display: flex;
+}
+
+.line-numbers {
+    user-select: none;
+    text-align: right;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #444;
+    color: #888;
+}
+
+.line-numbers > div {
+    line-height: 1.5;
+}
+
+.code-area {
+    flex: 1;
+}
+
+/* Ajustement des styles pour le contenu de la documentation et des exemples */
+.documentation, .examples {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #ddd;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.documentation h2, .examples h2 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.documentation p, .examples pre {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+/* Style des boutons */
+.buttons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.btn {
+    background: linear-gradient(to right, #8e44ad, #e74c3c, #3498db);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #3498db, #e74c3c, #8e44ad);
+    transform: scale(1.05);
+}
+
+.btn:focus {
+    outline: none;
+}
+
+/* Style pour les suggestions */
+.suggestions {
+    position: relative;
+    width: 90%;
+}
+
+.suggestions span {
+    background-color: #2d2d2d;
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+    display: block;
+}
+
+.suggestions span:hover {
+    background-color: #1d1d1d;
+}
+
